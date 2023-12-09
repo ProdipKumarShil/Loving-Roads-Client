@@ -12,9 +12,9 @@ export default BlogsByCategory;
 
 const Card = () => {
   return (
-    <div className="col-span-12 ">
+    <div className="col-span-12 border">
       <img className="h-[300px] w-full object-cover mb-7" src={bg} alt="" />
-      <div className="space-y-4">
+      <div className="space-y-4 px-4">
         <p className="text-[#6E6E6E]">1 Month Ago </p>
         <p className="text-[#121416] text-xl font-bold">
           Tick one more destination off of your bucket list with one of our most
