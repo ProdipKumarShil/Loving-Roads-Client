@@ -4,10 +4,13 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
 import { Toaster } from "react-hot-toast";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <Toaster />
+    <ParallaxProvider>
+      <RouterProvider router={router} />
+      <Toaster />
+    </ParallaxProvider>
   </React.StrictMode>
 );
