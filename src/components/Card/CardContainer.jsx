@@ -1,3 +1,4 @@
+import Button from "../Button";
 import Card from "./Card";
 
 const CardContainer = () => {
@@ -11,7 +12,7 @@ const CardContainer = () => {
         <Card />
       </div>
       <div className="flex">
-      <button className="btn btn-primary mx-auto my-8">Load More</button>
+        <Button className="mx-auto my-8 border" text="See More"/>
       </div>
     </div>
   );

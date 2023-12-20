@@ -1,44 +1,41 @@
 import { Link } from "react-router-dom";
+import Button from "../Button";
 
 const Navbar = () => {
   const ListItems = () => {
     return (
       <>
         <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
+          className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
           <li>DESTINATIONS</li>
         </Link>
         <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
+          className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>FOOD</li>
+          <li>DESTINATIONS</li>
         </Link>
         <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
+          className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>WELL BEING</li>
+          <li>DESTINATIONS</li>
         </Link>
         <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
+          className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>SPORT</li>
+          <li>DESTINATIONS</li>
         </Link>
         <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
+          className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>FAMILY</li>
+          <li>DESTINATIONS</li>
         </Link>
-        <Link
-          className="hover:bg-slate-800 hover:text-white p-3 rounded-lg lg:text-white"
-          to="">
-          <li>LIFESTYLE</li>
-        </Link>
+        
       </>
     );
   };
   return (
-    <div className="navbar bg-neutral ">
+    <div className="navbar bg-[#121416] ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -70,14 +67,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {/* <a className="btn">Login</a> */}
         <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn bg-orange-400 rounded-btn">
-            Dropdown
-          </div>
+          <Button tabIndex={0} role="button" text="button" />
           <ul
             tabIndex={0}
             className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">

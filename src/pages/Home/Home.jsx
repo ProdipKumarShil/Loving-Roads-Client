@@ -1,3 +1,4 @@
+import Button from "../../components/Button";
 import CardContainer from "../../components/Card/CardContainer";
 import Gallery from "../../components/Gallery/Gallery";
 import Header from "../../components/Header/Header";
@@ -7,11 +8,12 @@ import TopDestinations from "../../components/TopDestinations/TopDestinations";
 const Home = () => {
   return (
     <div>
-      {/* <Header />
+      {/* <Button className="bg-red-400 py-2 px-4 rounded-full" /> */}
+      <Header />
       <CardContainer />
-      <Gallery /> */}
+      <Gallery />
       <TopDestinations />
-      {/* <RelatedBlogs /> */}
+      <RelatedBlogs />
     </div>
   );
 };

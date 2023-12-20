@@ -3,7 +3,7 @@ import blogBg from "../../assets/header/bg.jpg";
 const RecommendedBlogLg = () => {
   return (
     <div className="flex border mb-3">
-      <img className="w-[200px] h-[120px]" src={blogBg} alt="" />
+      <img className="w-[200px] h-full md:h-[120px]" src={blogBg} alt="" />
       <div className="py-2 px-3">
         <p className="font-bold">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate

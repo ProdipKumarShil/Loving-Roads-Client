@@ -1,4 +1,5 @@
 import bg from '../../assets/header/bg2.jpg'
+import Button from '../Button';
 
 const Gallery = () => {
   return (
@@ -7,7 +8,8 @@ const Gallery = () => {
       <div className="absolute top-1/2 w-full transform -translate-y-1/2 flex flex-col gap-5">
         <p className='text-center text-[#E5E5E5] text-5xl  '>Richird Norton photorealistic rendering as real photos</p>
         <p className='text-center text-[#E5E5E5] '>Progressively incentivize cooperative systems through technically sound functionalities. <br /> The credibly productivate seamless data.</p>
-        <button className='btn btn-primary w- mx-auto'>Start planning your trip</button>
+        {/* <button className='btn btn-primary w- mx-auto'>Start planning your trip</button> */}
+        <Button className="mx-auto" text="Start planning your trip" />
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const Card = () => {
           lit. Phasellus aliquet nibh id iaculis pharetra. Maecenas eleifend sed
           ex. Donec quis magna sed felis elementum blandit nec quis sem. Maecen.
         </p>
-        <button className="btn btn-primary">View Post</button>
+        <button className="font-bold text-[#121416] underline pb-3">View More</button>
       </div>
     </div>
   );
