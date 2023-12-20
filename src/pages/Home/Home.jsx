@@ -7,11 +7,11 @@ import TopDestinations from "../../components/TopDestinations/TopDestinations";
 const Home = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <CardContainer />
-      <Gallery />
+      {/* <Gallery />
       <TopDestinations />
-      <RelatedBlogs />
+      <RelatedBlogs /> */}
     </div>
   );
 };

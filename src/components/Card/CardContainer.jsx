@@ -2,7 +2,7 @@ import Card from "./Card";
 
 const CardContainer = () => {
   return (
-    <div className="max-w-7xl mx-auto mb-40">
+    <div className="max-w-7xl mx-auto mb-40 px-2">
       <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-2">
         <Card />
         <Card />
