@@ -1,5 +1,6 @@
 import bg from "../../assets/header/bg3.jpg";
 import Blog from "../../components/Blog/Blog";
+import Comment from "../../components/Comment/Comment";
 import YouAlsoLike from "../../components/YouAlsoLike/YouAlsoLike";
 
 const SingleBlog = () => {
@@ -8,7 +9,7 @@ const SingleBlog = () => {
       <div className="mb-20 relative">
         <img className="w-full h-screen object-cover" src={bg} alt="" />
         <div className="absolute bottom-10 left-10 w-[1100px]">
-          <p className="text-5xl text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed animi magnam fuga?</p>
+          <p className="text-5xl font-bold custom-text-shadow text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed animi magnam fuga?</p>
         </div>
       </div>
       <Blog />

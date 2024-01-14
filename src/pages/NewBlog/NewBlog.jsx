@@ -5,28 +5,38 @@ import toast from "react-hot-toast";
 const NewBlog = () => {
   const { handleSubmit, register } = useForm();
   const handleSubmitForm = (values) => {
-    const formData = new FormData()
-    formData.append('image', values.img[0])
+    const newBlogData = {
+            title: values.title, 
+            body: [values.para1, values.para2, values.para3, values.para4, values.para5 ], 
+            category: values.category, 
+            reacts: 0, 
+            comments: [],
+            date: new Date(),
+            // img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
+          }
+        console.log(newBlogData)
+    // const formData = new FormData()
+    // formData.append('image', values.img[0])
 
-    axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMG_KEY}`, formData)
-      .then(res => {
-        const newBlogData = {
-          title: values.title, 
-          body: values.body, 
-          category: values.category, 
-          reacts: 0, 
-          comments: [],
-          date: new Date(),
-          img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
-        }
-        axios.post('http://localhost:5000/blog/postBlog', newBlogData)
-          .then(res => {
-            if(res.data.status){
-              toast.success(res.data.message)
-            }
-          })
-      })
-      .catch(e => console.log(e))
+    // axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMG_KEY}`, formData)
+    //   .then(res => {
+    //     const newBlogData = {
+    //       title: values.title, 
+    //       body: values.body, 
+    //       category: values.category, 
+    //       reacts: 0, 
+    //       comments: [],
+    //       date: new Date(),
+    //       img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
+    //     }
+    //     axios.post('http://localhost:5000/blog/postBlog', newBlogData)
+    //       .then(res => {
+    //         if(res.data.status){
+    //           toast.success(res.data.message)
+    //         }
+    //       })
+    //   })
+    //   .catch(e => console.log(e))
   };
 
   return (
@@ -72,12 +82,49 @@ const NewBlog = () => {
       </div>
       <div className="">
         <label className="mb-4" htmlFor="title">
-          Body
+          1st Paragraph
         </label>
         <textarea
-          {...register("body")}
+          {...register("para1")}
           className="textarea w-full textarea-bordered"
-          placeholder="Bio"></textarea>
+          placeholder="Paragraph 1"></textarea>
+      </div>
+
+      <div className="">
+        <label className="mb-4" htmlFor="title">
+          2nd Paragraph
+        </label>
+        <textarea
+          {...register("para2")}
+          className="textarea w-full textarea-bordered"
+          placeholder="Paragraph 2"></textarea>
+      </div>
+      <div className="">
+        <label className="mb-4" htmlFor="title">
+          3rd Paragraph
+        </label>
+        <textarea
+          {...register("para3")}
+          className="textarea w-full textarea-bordered"
+          placeholder="Paragraph 3"></textarea>
+      </div>
+      <div className="">
+        <label className="mb-4" htmlFor="title">
+          4th Paragraph
+        </label>
+        <textarea
+          {...register("para4")}
+          className="textarea w-full textarea-bordered"
+          placeholder="Paragraph 4"></textarea>
+      </div>
+      <div className="">
+        <label className="mb-4" htmlFor="title">
+          5th Paragraph
+        </label>
+        <textarea
+          {...register("para5")}
+          className="textarea w-full textarea-bordered"
+          placeholder="Paragraph 5"></textarea>
       </div>
       <button className="btn btn-primary mb-10">Submit</button>
     </form>

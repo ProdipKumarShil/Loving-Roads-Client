@@ -1,5 +1,6 @@
 import pic from '../../assets/TopDestinations/p.jpg'
 import pic2 from '../../assets/header/bg2.jpg'
+import Comment from '../Comment/Comment';
 
 const Blog = () => {
   return (
@@ -7,7 +8,7 @@ const Blog = () => {
       <div className="">
         <p>444 views</p>
       </div>
-      <div className="col-span-8 space-y-6">
+      <div className="col-span-8 text-xl space-y-8">
         <p>
           Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor
           pretium donec dictum. Vici consequat justo enim. Venenatis eget
@@ -110,6 +111,7 @@ const Blog = () => {
           dolor! Fugit ipsam culpa quisquam quasi doloremque cum quod alias
           laboriosam atque animi.
         </p>
+        <Comment />
       </div>
       <div className="col-span-3">a</div>
     </div>
