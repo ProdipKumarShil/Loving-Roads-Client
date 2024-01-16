@@ -42,7 +42,7 @@ const NewBlog = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSubmitForm)}
-      className="max-w-7xl mx-auto h-screen space-y-4 mt-4">
+      className="max-w-7xl mx-auto my-6 p-4 space-y-4 mt-4">
       <div className="">
         <label className="mb-4" htmlFor="title">
           Title
