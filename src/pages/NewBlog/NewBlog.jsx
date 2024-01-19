@@ -1,42 +1,39 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const NewBlog = () => {
+  const {user} = useContext(AuthContext)
   const { handleSubmit, register } = useForm();
   const handleSubmitForm = (values) => {
-    const newBlogData = {
-            title: values.title, 
-            body: [values.para1, values.para2, values.para3, values.para4, values.para5 ], 
-            category: values.category, 
-            reacts: 0, 
-            comments: [],
-            date: new Date(),
-            // img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
-          }
-        console.log(newBlogData)
-    // const formData = new FormData()
-    // formData.append('image', values.img[0])
+    const formData = new FormData()
+    formData.append('image', values.img[0])
 
-    // axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMG_KEY}`, formData)
-    //   .then(res => {
-    //     const newBlogData = {
-    //       title: values.title, 
-    //       body: values.body, 
-    //       category: values.category, 
-    //       reacts: 0, 
-    //       comments: [],
-    //       date: new Date(),
-    //       img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
-    //     }
-    //     axios.post('http://localhost:5000/blog/postBlog', newBlogData)
-    //       .then(res => {
-    //         if(res.data.status){
-    //           toast.success(res.data.message)
-    //         }
-    //       })
-    //   })
-    //   .catch(e => console.log(e))
+    axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMG_KEY}`, formData)
+      .then(res => {
+        const newBlogData = {
+          title: values.title, 
+          body: [values.para1, values.para2, values.para3, values.para4, values.para5 ], 
+          category: values.category, 
+          reacts: 0,
+          views: 0,
+          date: new Date(),
+          img: {img:res.data.data.url, thumb: res.data.data.thumb.url},
+          author: {
+            name: user?.displayName,
+            img: user?.photoURL
+          }
+        }
+        axios.post('http://localhost:5000/blog/postBlog', newBlogData)
+          .then(res => {
+            if(res.data.status){
+              toast.success(res.data.message)
+            }
+          })
+      })
+      .catch(e => console.log(e))
   };
 
   return (
