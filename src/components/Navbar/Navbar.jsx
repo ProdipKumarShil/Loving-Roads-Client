@@ -30,7 +30,6 @@ const Navbar = () => {
           to="">
           <li>Traveling</li>
         </Link>
-        
       </>
     );
   };
@@ -76,7 +75,23 @@ const Navbar = () => {
               <Link>Profile</Link>
             </li>
             <li>
-              <Link to='/newBlog'>Post a blog</Link>
+              <button
+                onClick={() =>
+                  document.getElementById("signInModal").showModal()
+                }>
+                Sign In
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() =>
+                  document.getElementById("signUpModal").showModal()
+                }>
+                Sign Up
+              </button>
+            </li>
+            <li>
+              <Link to="/newBlog">Post a blog</Link>
             </li>
             <li>
               <Link>Logout</Link>
@@ -84,8 +99,64 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      {/* modals */}
+      <SignInModal />
+      <SignUpModal />
     </div>
   );
 };
 
 export default Navbar;
+
+// this is sign in modal
+const SignInModal = () => {
+  return (
+    <dialog id="signInModal" className="modal">
+      <div className="modal-box">
+        <h3 className="font-bold text-lg">Hello from SignIn!</h3>
+        <p className="py-4">Press ESC key or click the button below to close</p>
+        <div className="modal-action">
+          <form  className="space-y-4">
+            <input type="email" placeholder="Email" className="input input-bordered w-full" />
+            <input type="password" placeholder="Password" className="input input-bordered w-full" />
+
+            <button className="btn w-full">SignIn</button>
+            
+            <div className="space-y-4">
+              <p className="text-center">or, continue with</p>
+              <button className="btn btn-primary w-full">Google</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  );
+};
+
+
+// this is sign up modal
+const SignUpModal = () => {
+  return (
+    <dialog id="signUpModal" className="modal">
+      <div className="modal-box">
+        <h3 className="font-bold text-lg">Hello from SignUp!</h3>
+        <p className="py-4">Press ESC key or click the button below to close</p>
+        <div className="modal-action">
+          <form className="space-y-4">
+            {/* if there is a button in form, it will close the modal */}
+            <input type="text" placeholder="Name" className="input input-bordered w-full" />
+            <input type="email" placeholder="Email" className="input input-bordered w-full" />
+            <input type="password" placeholder="Password" className="input input-bordered w-full" />
+
+            <button className="btn w-full">SignUp</button>
+            
+            <div className="space-y-4">
+              <p className="text-center">or, continue with</p>
+              <button className="btn btn-primary w-full">Google</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  );
+};
