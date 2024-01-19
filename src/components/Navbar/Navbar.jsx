@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { logOut } = useContext(AuthContext);
@@ -68,7 +69,7 @@ const Navbar = () => {
             <ListItems />
           </ul>
         </div>
-        <a className="btn btn-ghost text-x text-white text-xl">Lonely Gamer</a>
+        <Link to='/' className="btn btn-ghost text-x text-white text-xl">Lonely Gamer</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-8 px-1">
@@ -120,13 +121,19 @@ export default Navbar;
 
 // this is sign in modal
 const SignInModal = () => {
-  const { user, googlePopUpSignIn, emailSignIn, setUser } = useContext(AuthContext);
+  const { googlePopUpSignIn, emailSignIn, setUser } = useContext(AuthContext);
   const { handleSubmit, register } = useForm();
+  const navigate = useNavigate()
 
   const handleForm = (values) => {
     emailSignIn(values.email, values.password)
-      .then(res => setUser(res.user))
-      .catch(e => console.log(e.message))
+      .then(res => {
+        setUser(res.user)
+        document.getElementById('signInModal').close() 
+        navigate('/')
+        toast.success('Successfully SignIn')
+      })
+      .catch(e => toast.error(e.message))
   };
 
   const GooglePopUpSignIn = () => {
@@ -178,24 +185,34 @@ const SignInModal = () => {
 
 // this is sign up modal
 const SignUpModal = () => {
-  const { user, setUser, emailSignUp, updateUser } = useContext(AuthContext);
+  const { setUser, emailSignUp, updateUser } = useContext(AuthContext);
   const { handleSubmit, register } = useForm();
+  const [emailError, setEmailError] = useState(null)
+  const navigate = useNavigate()
 
   const handleForm = (values) => {
     axios
       .post("http://localhost:5000/user/addUser", values)
       .then((res) => {
         if (res.data.status) {
+          setEmailError(null)
           emailSignUp(values.email, values.password)
             .then((res) => {
               const userInfo = { displayName: values.name };
               updateUser(userInfo);
               setUser(res.user);
+              document.getElementById('signUpModal').close() 
+              toast.success('Successfully SignUp!')
+              navigate('/')
             })
-            .catch((e) => console.log(e.message));
+            .catch((e) => toast.error(e.message));
+        } else {
+          return
         }
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        setEmailError('Email is already used, Try another!')
+      });
   };
 
   return (
@@ -218,6 +235,7 @@ const SignUpModal = () => {
               placeholder="Email"
               className="input input-bordered w-full"
             />
+            {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             <input
               {...register("password")}
               type="password"
