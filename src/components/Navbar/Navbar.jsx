@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import Button from "../Button";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
 
 const Navbar = () => {
+  const { logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e.message));
+  };
   const ListItems = () => {
     return (
       <>
@@ -94,7 +104,7 @@ const Navbar = () => {
               <Link to="/newBlog">Post a blog</Link>
             </li>
             <li>
-              <Link>Logout</Link>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>
@@ -110,21 +120,54 @@ export default Navbar;
 
 // this is sign in modal
 const SignInModal = () => {
+  const { user, googlePopUpSignIn, emailSignIn, setUser } = useContext(AuthContext);
+  const { handleSubmit, register } = useForm();
+
+  const handleForm = (values) => {
+    emailSignIn(values.email, values.password)
+      .then(res => setUser(res.user))
+      .catch(e => console.log(e.message))
+  };
+
+  const GooglePopUpSignIn = () => {
+    googlePopUpSignIn()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <dialog id="signInModal" className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Hello from SignIn!</h3>
         <p className="py-4">Press ESC key or click the button below to close</p>
         <div className="modal-action">
-          <form  className="space-y-4">
-            <input type="email" placeholder="Email" className="input input-bordered w-full" />
-            <input type="password" placeholder="Password" className="input input-bordered w-full" />
+          <form onSubmit={handleSubmit(handleForm)} className="space-y-4">
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full"
+            />
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="Password"
+              className="input input-bordered w-full"
+            />
 
             <button className="btn w-full">SignIn</button>
-            
+
             <div className="space-y-4">
               <p className="text-center">or, continue with</p>
-              <button className="btn btn-primary w-full">Google</button>
+              <button
+                onClick={GooglePopUpSignIn}
+                className="btn btn-primary w-full">
+                Google
+              </button>
             </div>
           </form>
         </div>
@@ -133,23 +176,57 @@ const SignInModal = () => {
   );
 };
 
-
 // this is sign up modal
 const SignUpModal = () => {
+  const { user, setUser, emailSignUp, updateUser } = useContext(AuthContext);
+  const { handleSubmit, register } = useForm();
+
+  const handleForm = (values) => {
+    axios
+      .post("http://localhost:5000/user/addUser", values)
+      .then((res) => {
+        if (res.data.status) {
+          emailSignUp(values.email, values.password)
+            .then((res) => {
+              const userInfo = { displayName: values.name };
+              updateUser(userInfo);
+              setUser(res.user);
+            })
+            .catch((e) => console.log(e.message));
+        }
+      })
+      .catch((e) => console.log(e.message));
+  };
+
   return (
     <dialog id="signUpModal" className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Hello from SignUp!</h3>
         <p className="py-4">Press ESC key or click the button below to close</p>
         <div className="modal-action">
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit(handleForm)} className="space-y-4">
             {/* if there is a button in form, it will close the modal */}
-            <input type="text" placeholder="Name" className="input input-bordered w-full" />
-            <input type="email" placeholder="Email" className="input input-bordered w-full" />
-            <input type="password" placeholder="Password" className="input input-bordered w-full" />
+            <input
+              {...register("name")}
+              type="text"
+              placeholder="Name"
+              className="input input-bordered w-full"
+            />
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full"
+            />
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="Password"
+              className="input input-bordered w-full"
+            />
 
             <button className="btn w-full">SignUp</button>
-            
+
             <div className="space-y-4">
               <p className="text-center">or, continue with</p>
               <button className="btn btn-primary w-full">Google</button>
