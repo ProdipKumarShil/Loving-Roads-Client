@@ -65,9 +65,11 @@ const NewBlog = () => {
           <option value="defaultValue" disabled>
             Select a category
           </option>
+          <option value="gaming">Programming</option>
           <option value="gaming">Gaming</option>
-          <option value="travel">Travel</option>
-          <option value="food">Food</option>
+          <option value="gaming">Movies</option>
+          <option value="travel">Traveling</option>
+          <option value="food">Foods</option>
         </select>
       </div>
       <div className="">

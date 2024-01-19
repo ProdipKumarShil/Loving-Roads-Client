@@ -7,13 +7,22 @@ import you from "../../assets/icons/youtube.svg";
 import insta from "../../assets/icons/insta.svg";
 import sideBg from "../../assets/temp/sideBlogBG.png";
 import clock from "../../assets/icons/clock.svg"
+import view from '../../assets/icons/view.svg'
+import share from '../../assets/icons/share.svg'
 
 const Blog = () => {
   return (
     <div className="grid grid-cols-12 max-w-7xl mx-auto mb-40">
       {/* left column */}
       <div className="">
-        <p>444 views</p>
+        <div className="text-center mb-10">
+          <img className="block mx-auto" src={view} alt="" />
+          <p>views <br /> 1.6K </p>
+        </div>
+        <div className="text-center">
+          <img className="block mx-auto" src={share} alt="" />
+          <p>share <br /> 1.6K </p>
+        </div>
       </div>
       <div className="col-span-8 text-xl space-y-8">
         <p>

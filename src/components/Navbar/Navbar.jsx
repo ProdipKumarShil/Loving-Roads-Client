@@ -8,27 +8,27 @@ const Navbar = () => {
         <Link
           className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>DESTINATIONS</li>
+          <li>Programming</li>
         </Link>
         <Link
           className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>DESTINATIONS</li>
+          <li>Foods</li>
         </Link>
         <Link
           className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>DESTINATIONS</li>
+          <li>Gaming</li>
         </Link>
         <Link
           className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>DESTINATIONS</li>
+          <li>Movies</li>
         </Link>
         <Link
           className="hover:bg-white hover:text-black p-3  lg:text-white"
           to="">
-          <li>DESTINATIONS</li>
+          <li>Traveling</li>
         </Link>
         
       </>
