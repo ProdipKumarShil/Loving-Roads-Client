@@ -192,7 +192,7 @@ const SignUpModal = () => {
 
   const handleForm = (values) => {
     axios
-      .post("http://localhost:5000/user/addUser", values)
+      .post("https://loving-roads-server.vercel.app/user/addUser", values)
       .then((res) => {
         if (res.data.status) {
           setEmailError(null)

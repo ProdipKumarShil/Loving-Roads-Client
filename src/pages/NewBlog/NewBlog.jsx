@@ -6,12 +6,12 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const NewBlog = () => {
   const {user} = useContext(AuthContext)
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
   const handleSubmitForm = (values) => {
     const formData = new FormData()
     formData.append('image', values.img[0])
 
-    axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMG_KEY}`, formData)
+    axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_KEY}`, formData)
       .then(res => {
         const newBlogData = {
           title: values.title, 
@@ -26,10 +26,11 @@ const NewBlog = () => {
             img: user?.photoURL
           }
         }
-        axios.post('http://localhost:5000/blog/postBlog', newBlogData)
+        axios.post('https://loving-roads-server.vercel.app/blog/postBlog', newBlogData)
           .then(res => {
             if(res.data.status){
               toast.success(res.data.message)
+              reset()
             }
           })
       })
