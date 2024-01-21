@@ -27,7 +27,8 @@ export const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: 'blog',
+        path: 'blog/:id',
+        loader: ({params}) => fetch(`https://loving-roads-server.vercel.app/blog/singleBlog/${params.id}`),
         element: <SingleBlog />
       },
       {

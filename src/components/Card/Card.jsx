@@ -1,8 +1,9 @@
 import moment from 'moment';
 import img2 from '../../assets/icons/img.svg'
+import { Link } from 'react-router-dom';
 
 const Card = ({blog}) => {
-  const {title, body, category, date, img, author} = blog
+  const {_id, title, body, category, date, img, author} = blog
   return (
     <div className="border group h-full">
       <figure className="mb-6 relative">
@@ -23,7 +24,8 @@ const Card = ({blog}) => {
         <p className="text-[#6C757D] text-sm mb-4">
           {body[0].substring(0, 200)}...
         </p>
-        <button className="font-bold text-[#121416] underline mb-3">View More</button>
+        {/* <button className="font-bold text-[#121416] underline mb-3">View More</button> */}
+        <Link to={`/blog/${_id}`} className="font-bold text-[#121416] underline mb-3">View More</Link>
       </div>
     </div>
   );
