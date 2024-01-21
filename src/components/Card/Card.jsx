@@ -19,7 +19,7 @@ const Card = ({blog}) => {
         <img className='absolute top-2 right-2 bg-slate-400 p-1 bg-opacity-70 rounded-full hidden group-hover:block' src={img2} alt="" />
       </figure>
       <div className="px-4">
-        <p className="text-2xl font-bold mb-5 hover:underline">{title}</p>
+        <Link to={`/blog/${_id}`} className="text-2xl font-bold mb-5 hover:underline">{title}</Link>
         <User user={author} date={date} />
         <p className="text-[#6C757D] text-sm mb-4">
           {body[0].substring(0, 200)}...
